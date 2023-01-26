@@ -32,15 +32,44 @@ export class AddNewStockReceivedComponent implements OnInit {
     this.currentStore = data?.currentStore;
     this.billableItems = data?.billableItems;
   }
-
+  
   ngOnInit(): void {
     // Create formfields
     this.formFields = [
+      new Textbox({
+        id: "supplier",
+        key: "supplier",
+        label: "Supplier Name",
+        type: "text",
+        required: true,
+        disabled: false,
+        value: "",
+      }),
+      new Textbox({
+        id: "invoiceDate",
+        key: "invoiceDate",
+        label: "Invoice date",
+        type: "date",
+        controlType: "date",
+        required: true,
+        disabled: false,
+        value: "",
+      }),
       new Textbox({
         id: "batchNo",
         key: "batchNo",
         label: "Batch NO",
         type: "text",
+        required: true,
+        disabled: false,
+        value: "",
+      }),
+      new Textbox({
+        id: "receivingDate",
+        key: "receivingDate",
+        label: "Receiving date",
+        type: "date",
+        controlType: "date",
         required: true,
         disabled: false,
         value: "",

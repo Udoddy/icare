@@ -1,46 +1,46 @@
-import { Component, OnInit, AfterContentInit } from "@angular/core";
-import { MatLegacyDialog as MatDialog } from "@angular/material/legacy-dialog";
-import { MatLegacyTableDataSource as MatTableDataSource } from "@angular/material/legacy-table";
-import { ActivatedRoute, Router } from "@angular/router";
-import { select, Store } from "@ngrx/store";
-import * as _ from "lodash";
-import { Observable, of } from "rxjs";
-import { catchError, tap } from "rxjs/operators";
-import { SystemSettingsService } from "src/app/core/services/system-settings.service";
-import { Dropdown } from "src/app/shared/modules/form/models/dropdown.model";
-import { Textbox } from "src/app/shared/modules/form/models/text-box.model";
-import { OrdersService } from "src/app/shared/resources/order/services/orders.service";
-import { Patient } from "src/app/shared/resources/patient/models/patient.model";
-import { PatientService } from "src/app/shared/resources/patient/services/patients.service";
-import { EncountersService } from "src/app/shared/services/encounters.service";
-import { go, loadCurrentPatient } from "src/app/store/actions";
-import { discountBill } from "src/app/store/actions/bill.actions";
-import { AppState } from "src/app/store/reducers";
-import {
+  import { Component, OnInit, AfterContentInit } from "@angular/core";
+  import { MatLegacyDialog as MatDialog } from "@angular/material/legacy-dialog";
+  import { MatLegacyTableDataSource as MatTableDataSource } from "@angular/material/legacy-table";
+  import { ActivatedRoute, Router } from "@angular/router";
+  import { select, Store } from "@ngrx/store";
+  import * as _ from "lodash";
+  import { Observable, of } from "rxjs";
+  import { catchError, tap } from "rxjs/operators";
+  import { SystemSettingsService } from "src/app/core/services/system-settings.service";
+  import { Dropdown } from "src/app/shared/modules/form/models/dropdown.model";
+  import { Textbox } from "src/app/shared/modules/form/models/text-box.model";
+  import { OrdersService } from "src/app/shared/resources/order/services/orders.service";
+  import { Patient } from "src/app/shared/resources/patient/models/patient.model";
+  import { PatientService } from "src/app/shared/resources/patient/services/patients.service";
+  import { EncountersService } from "src/app/shared/services/encounters.service";
+  import { go, loadCurrentPatient } from "src/app/store/actions";
+  import { discountBill } from "src/app/store/actions/bill.actions";
+  import { AppState } from "src/app/store/reducers";
+  import {
   getLoadingBillStatus,
   getPatientBillLoadedStatus,
   getPatientBills,
-} from "src/app/store/selectors/bill.selectors";
-import { getCurrentPatient } from "src/app/store/selectors/current-patient.selectors";
-import {
+  } from "src/app/store/selectors/bill.selectors";
+  import { getCurrentPatient } from "src/app/store/selectors/current-patient.selectors";
+  import {
   getAllPayments,
   getLoadingPaymentStatus,
-} from "src/app/store/selectors/payment.selector";
-import { getActiveVisit } from "src/app/store/selectors/visit.selectors";
-import { ExemptionDenialComponent } from "../../components/exemption-denial/exemption-denial.component";
-import { ExemptionFullConfirmationComponent } from "../../components/exemption-full-confirmation/exemption-full-confirmation.component";
-import { BillItem } from "../../models/bill-item.model";
-import { BillObject } from "../../models/bill-object.model";
-import { Bill } from "../../models/bill.model";
-import { PaymentObject } from "../../models/payment-object.model";
-import { BillingService } from "../../services/billing.service";
+  } from "src/app/store/selectors/payment.selector";
+  import { getActiveVisit } from "src/app/store/selectors/visit.selectors";
+  import { ExemptionDenialComponent } from "../../components/exemption-denial/exemption-denial.component";
+  import { ExemptionFullConfirmationComponent } from "../../components/exemption-full-confirmation/exemption-full-confirmation.component";
+  import { BillItem } from "../../models/bill-item.model";
+  import { BillObject } from "../../models/bill-object.model";
+  import { Bill } from "../../models/bill.model";
+  import { PaymentObject } from "../../models/payment-object.model";
+  import { BillingService } from "../../services/billing.service";
 
-@Component({
+  @Component({
   selector: "app-exemption",
   templateUrl: "./exemption.component.html",
   styleUrls: ["./exemption.component.scss"],
-})
-export class ExemptionComponent implements OnInit, AfterContentInit {
+  })
+  export class ExemptionComponent implements OnInit, AfterContentInit {
   currentPatient$: Observable<Patient>;
   patientDetails: any;
   quoteToShow: boolean;
@@ -328,4 +328,4 @@ export class ExemptionComponent implements OnInit, AfterContentInit {
       })
     );
   }
-}
+  }
